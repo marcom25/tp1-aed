@@ -6,9 +6,11 @@ import java.io.IOException;
 
 public class FileManager {
     private String line = "";
+    private float accTotal = 0;
     private float acc = 0;
     private int totalNumbers = 0;
     private float result = 0;
+    private float totalResult = 0;
     private int rows;
     private int columns;
     private long start;
@@ -50,60 +52,34 @@ public class FileManager {
                 String[] row = line.split(",");
 
                 for (String index : row) {
-                    
+
+                    float i = Float.parseFloat(index);
+
                     System.out.println(index);
-                }
-                System.out.println();
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+                    
+                    acc += i;
 
-    public float TotalAverage() {
-        start = System.currentTimeMillis();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("test.csv"));
-            while ((line = reader.readLine()) != null) {
-                String[] row = line.split(",");
-                for (String index : row) {
-                    acc += Float.parseFloat(index);
+                    accTotal += i;
+                    
                 }
-            }
-            result = acc / totalNumbers;
-            reader.close();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        end = System.currentTimeMillis();
-        System.out.println("tiempo: " + (end - start));
-        return result;
-    }
 
-    public void RowAverage() {
-        start = System.currentTimeMillis();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("test.csv"));
-            while ((line = reader.readLine()) != null) {
-                String[] row = line.split(",");
-                for (String index : row) {
-                    acc += Float.parseFloat(index);
-                }
                 result = acc / columns;
-                System.out.println(result);
-               
+
+                System.out.println("Promedio por Fila: " + result);
+
                 acc = 0;
             }
+
+            totalResult = accTotal / totalNumbers;
+
+            System.out.println("Promedio Total: " + totalResult);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        end = System.currentTimeMillis();
-
-        System.out.println("tiempo: " + (end - start));
     }
+
+    
 
 }
 

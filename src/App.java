@@ -19,9 +19,7 @@ public class App {
         
         fileManager.Write();
         fileManager.Read();
-        System.out.println();
-        fileManager.RowAverage();
-        System.out.println(fileManager.TotalAverage());
+        
     }
 
 }
