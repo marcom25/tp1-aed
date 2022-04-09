@@ -27,9 +27,7 @@ public class FileManager {
                 for (int j = 0; j < this.columns; j++) {
                     if (j == columns - 1) {
                         writer.write(getRandomNumber() + "\n");
-                    } else {
-                        writer.write(getRandomNumber() + ", ");
-                    }
+                    } else writer.write(getRandomNumber() + ", ");
                 }
             }
             writer.close();
