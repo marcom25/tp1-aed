@@ -13,7 +13,7 @@ public class FileManager {
     public FileManager(int rows, int columns){
         this.rows = rows;
         this.columns = columns;
-        totalNumbers = rows * columns;
+        this.totalNumbers = rows * columns;
     }
 
     private static int getRandomNumber() {
