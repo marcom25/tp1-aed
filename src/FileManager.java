@@ -5,17 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileManager {
-    private String line = "";
-    private float accTotal = 0;
-    private float acc = 0;
-    private int totalNumbers = 0;
-    private float result = 0;
-    private float totalResult = 0;
+    private final String FILENAME = "test.csv";
     private int rows;
     private int columns;
-    private long start;
-    private long end;
-
+    private int totalNumbers = 0;
 
     public FileManager(int rows, int columns){
         this.rows = rows;
@@ -23,19 +16,20 @@ public class FileManager {
         totalNumbers = rows * columns;
     }
 
-    public static int RandomNumber() {
+    private static int getRandomNumber() {
         return (int) (Math.random() * 1001);
     }
 
-    public void Write() {
-        
+    public void write() {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("test.csv"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME));
             for (int i = 0; i < this.rows; i++) {
                 for (int j = 0; j < this.columns; j++) {
                     if (j == columns - 1) {
-                        writer.write(RandomNumber() + "\n");
-                    } else writer.write(RandomNumber() + ", ");
+                        writer.write(getRandomNumber() + "\n");
+                    } else {
+                        writer.write(getRandomNumber() + ", ");
+                    }
                 }
             }
             writer.close();
@@ -44,42 +38,41 @@ public class FileManager {
         }
     }
 
-    public void Read() {
+    public void read() {
+        String line;
+        float acc = 0;
+        float accTotal = 0;
+        float result = 0;
+        float totalResult = 0;
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("test.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
+
             while ((line = reader.readLine()) != null) {
-
                 String[] row = line.split(",");
+                String lastItem = row[row.length - 1];
 
-                for (String index : row) {
-
-                    float i = Float.parseFloat(index);
-
-                    System.out.println(index);
-                    
-                    acc += i;
-
-                    accTotal += i;
-                    
+                for (String string : row) {
+                    float number = Float.parseFloat(string);
+                    if (string.equals(lastItem)) {
+                        System.out.print(string + "\n");
+                    } else {
+                        System.out.print(string + ", ");
+                    }
+                    acc += number;
+                    accTotal += number;
                 }
 
                 result = acc / columns;
-
                 System.out.println("Promedio por Fila: " + result);
-
                 acc = 0;
             }
 
             totalResult = accTotal / totalNumbers;
-
             System.out.println("Promedio Total: " + totalResult);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    
-
 }
-
