@@ -4,10 +4,10 @@ public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Por favor, ingrese el número de filas.");
+        System.out.println("Por favor, ingrese el numero de filas.");
         int rows =  input.nextInt();
 
-        System.out.println("Por favor, ingrese el número de columnas.");
+        System.out.println("Por favor, ingrese el numero de columnas.");
         int columns = input.nextInt();
 
         input.close();
