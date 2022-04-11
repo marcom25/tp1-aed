@@ -68,14 +68,13 @@ public class FileManager {
                 i++;
                 acc = 0;
             }
-
-
-            for (int j = 0; j < rows; j++) {
-                System.out.println("Promedio de la fila " + (j + 1) + ": " + averages[j]);
-            }
-            totalResult = accTotal / totalNumbers;
-            System.out.println("Promedio total: " + totalResult);
             reader.close();
+
+            
+            for (int j = 0; j < rows; j++) System.out.println("Promedio de la fila " + (j + 1) + ": " + averages[j]);
+            
+            totalResult = accTotal / totalNumbers;
+            System.out.println("Promedio total: " + totalResult); 
         } catch (IOException e) {
             e.printStackTrace();
         }
