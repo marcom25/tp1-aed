@@ -3,17 +3,20 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        FileManager fileManager = new FileManager();
 
-        System.out.println("Por favor, ingrese el numero de filas.");
+        System.out.print("Por favor, ingrese el numero de filas: ");
         int rows =  input.nextInt();
 
-        System.out.println("Por favor, ingrese el numero de columnas.");
+        System.out.print("Por favor, ingrese el numero de columnas: ");
         int columns = input.nextInt();
 
         input.close();
 
-        fileManager.write(rows, columns);
-        fileManager.read(rows, columns);
+        FileManager fileManager = new FileManager();
+        double writeTime = fileManager.write(rows, columns);
+        double readTime = fileManager.read(rows, columns);
+
+        System.out.println("Tiempo tardado en escribir los datos: " + writeTime + " segundos.");
+        System.out.println("Tiempo tardado en leer los datos: " + readTime + " segundos.");
     }
 }
