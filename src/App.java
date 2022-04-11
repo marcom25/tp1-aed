@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        FileManager fileManager = new FileManager();
 
         System.out.println("Por favor, ingrese el numero de filas.");
         int rows =  input.nextInt();
@@ -12,8 +13,7 @@ public class App {
 
         input.close();
 
-        FileManager fileManager = new FileManager(rows, columns);
-        fileManager.write();
-        fileManager.read();
+        fileManager.write(rows, columns);
+        fileManager.read(rows, columns);
     }
 }
