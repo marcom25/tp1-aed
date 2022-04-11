@@ -7,24 +7,16 @@ import java.io.IOException;
 
 public class FileManager {
     private final String FILENAME = "test.csv";
-    private int rows;
-    private int columns;
-    private int totalNumbers = 0;
-    public FileManager(int rows, int columns){
-        this.rows = rows;
-        this.columns = columns;
-        this.totalNumbers = rows * columns;
-    }
 
     private static int getRandomNumber() {
         return (int) (Math.random() * 1001);
     }
 
-    public void write() {
+    public void write(int rows, int columns) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME));
-            for (int i = 0; i < this.rows; i++) {
-                for (int j = 0; j < this.columns; j++) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
                     if (j == columns - 1) {
                         writer.write(getRandomNumber() + "\n");
                     } else writer.write(getRandomNumber() + ", ");
@@ -36,14 +28,15 @@ public class FileManager {
         }
     }
 
-    public void read() {
+    public void read(int rows, int columns) {
+        int i = 0;
+        int totalNumbers = rows * columns;
         String line;
         float acc = 0;
-        float accTotal = 0;
         float result = 0;
+        float accTotal = 0;
         float totalResult = 0;
-        int i = 0;
-        float [] averages = new float[rows];
+        float [] rowAverages = new float[rows];
         
 
         try {
@@ -64,14 +57,14 @@ public class FileManager {
                 }
                 
                 result = acc / columns;
-                averages[i] = result;
+                rowAverages[i] = result;
                 i++;
                 acc = 0;
             }
             reader.close();
 
             
-            for (int j = 0; j < rows; j++) System.out.println("Promedio de la fila " + (j + 1) + ": " + averages[j]);
+            for (int j = 0; j < rows; j++) System.out.println("Promedio de la fila " + (j + 1) + ": " + rowAverages[j]);
             
             totalResult = accTotal / totalNumbers;
             System.out.println("Promedio total: " + totalResult); 
