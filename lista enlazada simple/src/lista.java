@@ -1,7 +1,6 @@
-import java.util.Scanner;
+
 
 public class lista {
-
 	protected Nodo inicio,fin; // referencias para saber donde esta el inicio y el fin
 	
 	public void Lista () {
@@ -26,10 +25,8 @@ public class lista {
 		while (recorrer != null) {
 			System.out.print("[" + recorrer.dato + "]---->");
 			recorrer = recorrer.siguiente;
-		}
-		
+		}	
 	}
-	
 }
 
 

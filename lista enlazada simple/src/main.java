@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class main {
 
-	public static void main (String [] args) {
+	public static void main (String[] args) {
 		
 		lista listita = new lista();
 		int opcion = 0, el;
@@ -53,7 +53,7 @@ public class main {
 						default:
 						
 						}
-						
+					entrada.close();	
 			} catch (Exception e) {
 				
 			}
@@ -61,7 +61,4 @@ public class main {
 		} while (opcion != 3);
 		
 	}
-	
-	
-	
 }
