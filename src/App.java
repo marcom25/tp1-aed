@@ -13,6 +13,7 @@ public class App {
         input.close();
 
         FileManager fileManager = new FileManager(rows, columns);
+        
         fileManager.write();
         fileManager.read();
     }

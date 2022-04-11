@@ -4,12 +4,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class FileManager {
     private final String FILENAME = "test.csv";
     private int rows;
     private int columns;
     private int totalNumbers = 0;
-
     public FileManager(int rows, int columns){
         this.rows = rows;
         this.columns = columns;
@@ -42,10 +42,13 @@ public class FileManager {
         float accTotal = 0;
         float result = 0;
         float totalResult = 0;
+        int i = 0;
+        float [] averages = new float[rows];
+        
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
-
+            
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(",");
                 String lastItem = row[row.length - 1];
@@ -54,20 +57,24 @@ public class FileManager {
                     float number = Float.parseFloat(string);
                     if (string.equals(lastItem)) {
                         System.out.print(string + "\n");
-                    } else {
-                        System.out.print(string + ", ");
-                    }
+                    } else System.out.print(string + ", ");
+
                     acc += number;
                     accTotal += number;
                 }
-
+                
                 result = acc / columns;
-                System.out.println("Promedio por Fila: " + result);
+                averages[i] = result;
+                i++;
                 acc = 0;
             }
 
+
+            for (int j = 0; j < rows; j++) {
+                System.out.println("Promedio de la fila " + (j + 1) + ": " + averages[j]);
+            }
             totalResult = accTotal / totalNumbers;
-            System.out.println("Promedio Total: " + totalResult);
+            System.out.println("Promedio total: " + totalResult);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
