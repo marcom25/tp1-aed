@@ -15,8 +15,10 @@ public class App {
         FileManager fileManager = new FileManager();
         double writeTime = fileManager.write(rows, columns);
         double readTime = fileManager.read(rows, columns);
+        double totalTime = writeTime + readTime;
 
         System.out.println("Tiempo tardado en escribir los datos: " + writeTime + " segundos.");
         System.out.println("Tiempo tardado en leer los datos: " + readTime + " segundos.");
+        System.out.println("Tiempo tardado en total: " + totalTime + " segundos.");
     }
 }
